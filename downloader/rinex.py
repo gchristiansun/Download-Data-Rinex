@@ -68,7 +68,7 @@ def download_rinex(
 
         # save_path = directory + zip_name
 
-        with open("wb") as f:
+        with open(zip_name, "wb") as f:
             f.write(zip_res.content)
 
         print("ZIP saved:", zip_name)
