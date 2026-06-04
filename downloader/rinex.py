@@ -35,7 +35,6 @@ def download_rinex(
     decoded = base64.b64decode(r.content)
 
     msg_len = struct.unpack(">I", decoded[1:5])[0]
-
     msg = decoded[5:5+msg_len]
 
     try:
@@ -43,6 +42,10 @@ def download_rinex(
             msg.decode(errors="ignore")
             .replace("@", "")
             .strip()
+        )
+
+        zip_res = session.get(
+            url_download + zip_name
         )
 
         print("ZIP NAME:", zip_name)
@@ -62,17 +65,10 @@ def download_rinex(
 
     print("ZIP STATUS:", zip_res.status_code)
 
-    if zip_res.status_code == 200:
+    if zip_res.status_code != 200:
+        return None, None
 
-        # save_path = directory + zip_name
-
-        with open(zip_name, "wb") as f:
-            f.write(zip_res.content)
-
-        print("ZIP saved:", zip_name)
-
-    else:
-        print("Failed download ZIP")
+    return zip_name, zip_res.content
 
     print("STATUS:", r.status_code)
     print("CONTENT-TYPE:", r.headers.get("Content-Type"))
