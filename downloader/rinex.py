@@ -34,8 +34,6 @@ def download_rinex(
 
     decoded = base64.b64decode(r.content)
 
-    # compressed_flag = decoded[0]
-
     msg_len = struct.unpack(">I", decoded[1:5])[0]
 
     msg = decoded[5:5+msg_len]
