@@ -1,7 +1,10 @@
 # Ignore file
 .env
 main-disable.py
+downloader.spec
 
 
 # Ignore folders
 /_pycache__/
+/build/
+/client-downloader/
