@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 from auth.login import login
-from downloader.rinex import download_rinex
+from downloader import download_rinex
 from config import (
     LOGIN_URL,
     DOWNLOAD_URL,

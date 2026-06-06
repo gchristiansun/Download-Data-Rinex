@@ -10,7 +10,7 @@ from config import (
 )
 
 from auth.login import login
-from downloader.rinex import download_rinex
+from downloader import download_rinex
 
 
 def run_download(email, password):
