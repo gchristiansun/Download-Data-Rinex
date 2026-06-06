@@ -55,6 +55,5 @@ def run_download(email, password):
             station,
             doy,
             year,
-            ZIP_DOWNLOAD_URL,
-            directory
+            ZIP_DOWNLOAD_URL
         )
