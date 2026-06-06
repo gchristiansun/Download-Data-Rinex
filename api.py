@@ -47,8 +47,7 @@ def download_station(station: str):
         station,
         doy,
         year,
-        ZIP_DOWNLOAD_URL,
-        None
+        ZIP_DOWNLOAD_URL
     )
 
     return Response(
