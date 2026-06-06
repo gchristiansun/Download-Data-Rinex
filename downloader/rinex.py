@@ -12,7 +12,6 @@ def download_rinex(
     doy,
     year,
     url_download,
-    directory
 ):
 
     payload, filename = build_payload(
@@ -69,8 +68,3 @@ def download_rinex(
         return None, None
 
     return zip_name, zip_res.content
-
-    print("STATUS:", r.status_code)
-    print("CONTENT-TYPE:", r.headers.get("Content-Type"))
-    print("RAW LEN:", len(r.content))
-    print("RAW HEAD:", r.content[:80])

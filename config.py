@@ -20,3 +20,5 @@ HEADERS = {
 }
 
 directory = "E:/rinex/"
+
+API_STATIONS = "https://srgi.big.go.id/api/stasiuns"

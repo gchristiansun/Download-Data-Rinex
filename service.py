@@ -1,3 +1,4 @@
+import os
 import requests
 from datetime import datetime
 
@@ -6,11 +7,25 @@ from config import (
     DOWNLOAD_URL,
     HEADERS,
     ZIP_DOWNLOAD_URL,
-    directory
+    API_STATIONS
 )
 
 from auth.login import login
-from downloader import download_rinex
+from downloader.rinex import download_rinex
+
+def load_valid_stations():
+    url = API_STATIONS
+    try:
+        data = requests.get(url, timeout=20).json()
+    except Exception as e:
+        print("Error fetching stations:", e)
+    
+    stations = data['results']['pasutStasiuns']
+
+    return {
+        s['sitecode'].strip().lower()
+        for s in stations
+    }
 
 
 def run_download(email, password):
@@ -30,15 +45,7 @@ def run_download(email, password):
     doy = datetime.utcnow().timetuple().tm_yday
     year = datetime.utcnow().year
 
-    stations = [
-        "bako",
-        "cang",
-        "cbik",
-        "cdnp",
-        "samp",
-        "cbda",
-        "cmak"
-    ]
+    stations = load_valid_stations()
 
     for station in stations:
         download_rinex(
